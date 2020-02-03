@@ -1,4 +1,4 @@
-from profanity_functions import censor, provide, checking_list_exist
+from profanity_functions import censor, provide, checking_list_exist, filter_special_signs
 
 if __name__ == '__main__':
 
@@ -9,13 +9,13 @@ if __name__ == '__main__':
         have_blacklist = input("Do you have own list of profanities? (check: YES or NO)")
 
         if checking_list_exist(have_blacklist) == False:
-            blacklist = provide()
-            print(censor(your_text, blacklist))
+            print(censor(filter_special_signs(your_text), provide()))
 
-        elif checking_list_exist(have_blacklist) == True:
+        else:
             blacklist = input("Enter all your profanities separating them with spaces: ")
-            print(censor(your_text, blacklist.split()))
+            print(censor(filter_special_signs(your_text), blacklist.split()))
 
         go_or_not = input("Do you want to censor another text? (check: YES or NO)")
+
         if go_or_not == "NO":
             break
